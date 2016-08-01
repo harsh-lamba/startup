@@ -2,14 +2,19 @@
 
 'use strict';
 
-var config = require('./gulp.config')();
-var gulp = require('gulp');
-var sass = require('gulp-sass');
-var broswerSync = require('browser-sync').create();
-var gutil = require('gulp-util');
+var config = require("./gulp.config")();
+var gulp = require("gulp");
+var broswerSync = require("browser-sync").create();
+
+var $ = require("gulp-load-plugins")({
+	rename: {
+		"gulp-sass"		: "sass",
+		"gulp-util"		: "logger"
+	}
+});
 
 // Static server
-gulp.task('browser-sync', function() {
+gulp.task("browser-sync", function() {
     browserSync.init({
         server: {
             baseDir: "./"
@@ -18,11 +23,11 @@ gulp.task('browser-sync', function() {
 });
 
 //Sass Compile
-gulp.task('sass', function(){
-	gutil.log(config.rootSass);
+gulp.task("sass", function(){
+	$.logger.log('Compiling Sass into css');
 	return gulp
 			.src(config.rootSass)
-			.pipe(sass())
-			.pipe(gulp.dest('app/tmp/'))
-			.pipe(browserSync.stream());
+			.pipe($.sass())
+			.pipe(gulp.dest("app/tmp/"))
+			.pipe(broswerSync.stream());
 });
