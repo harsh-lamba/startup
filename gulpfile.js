@@ -15,9 +15,9 @@ var $ = require("gulp-load-plugins")({
 
 // Static server
 gulp.task("browser-sync", function() {
-    browserSync.init({
+    broswerSync.init({
         server: {
-            baseDir: "./"
+            baseDir: "./app"
         }
     });
 });
