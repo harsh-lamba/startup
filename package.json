@@ -17,6 +17,10 @@
   },
   "homepage": "https://github.com/harsh-lamba/startup#readme",
   "dependencies": {
-    "bower": "^1.7.9"
+    "bower": "^1.7.9",
+    "browser-sync": "^2.14.0",
+    "gulp": "^3.9.1",
+    "gulp-sass": "^2.3.2",
+    "gulp-util": "^3.0.7"
   }
 }
