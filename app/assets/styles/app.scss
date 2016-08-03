@@ -11,5 +11,14 @@
 @import "../../../bower_components/bootstrap-sass/assets/stylesheets/bootstrap.scss";
 @import "../../../bower_components/components-font-awesome/scss/font-awesome.scss";
 
+//helpers
+@import "helpers/variables.scss";
+
+//base
+@import "base/reset.scss";
+
+//Components
+@import "components/buttons.scss";
+
 //layout
 @import "layout/cover.scss";
