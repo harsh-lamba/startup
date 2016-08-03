@@ -43,6 +43,7 @@ gulp.task("sass:watch", function(){
 
 //Concatenate Lib files and uglify
 gulp.task("js:lib", function(){
+	$.logger.log(config.allLib);
 	return gulp
 			.src(config.allLib)
 			.pipe($.concate("lib.js"))

@@ -1,4 +1,15 @@
-p{
-	font-size:12px;
-	font-weight:500;
-}
+/*
+#	Author : Harsh Kumar Lamba
+#	Date : 
+#	Description : Main Application Sass file
+*/
+
+//Fonts
+@import url(https://fonts.googleapis.com/css?family=Roboto:400,500,700);
+
+//Vendor specific
+@import "../../../bower_components/bootstrap-sass/assets/stylesheets/bootstrap.scss";
+@import "../../../bower_components/components-font-awesome/scss/font-awesome.scss";
+
+//layout
+@import "layout/cover.scss";

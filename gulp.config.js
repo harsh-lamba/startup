@@ -13,8 +13,8 @@ module.exports = function() {
 		'rootSass'	: assets + 'styles/app.scss',
 		'allSass'	: assets + 'styles/**/*.scss',
 		'allLib' 	: [
-						bowerFiles + "jquery/dist/jquery.min.js",
-						bowerFiles + "jquery/dist/bootstrap-sass/bootstrap.min.js"
+						//bowerFiles + "jquery/dist/jquery.min.js",
+						bowerFiles + "bootstrap-sass/assets/javascripts/bootstrap.min.js"
 					  ],
 		"allApp"	: [
 						app + "jquery/dist/jquery.min.js"
