@@ -9,7 +9,10 @@ var broswerSync = require("browser-sync").create();
 var $ = require("gulp-load-plugins")({
 	rename: {
 		"gulp-sass"		: "sass",
-		"gulp-util"		: "logger"
+		"gulp-util"		: "logger",
+		"gulp-concat"	: "concate",
+		"gulp-rename"	: "rename",
+		"gulp-uglify"	: "minify"
 	}
 });
 
@@ -17,7 +20,8 @@ var $ = require("gulp-load-plugins")({
 gulp.task("browser-sync", function() {
     broswerSync.init({
         server: {
-            baseDir: "./app"
+            baseDir: "./",
+            directory : true
         }
     });
 });
@@ -31,3 +35,20 @@ gulp.task("sass", function(){
 			.pipe(gulp.dest("app/tmp/"))
 			.pipe(broswerSync.stream());
 });
+
+//Sass files watch
+gulp.task("sass:watch", function(){
+	gulp.watch(config.allSass, ["sass"])
+});
+
+//Concatenate Lib files and uglify
+gulp.task("js:lib", function(){
+	return gulp
+			.src(config.allLib)
+			.pipe($.concate("lib.js"))
+			.pipe($.rename("lib.min.js"))
+			.pipe(gulp.dest(config.temp));
+});
+
+//Build Task
+gulp.task("run", ["sass", "js:lib", "browser-sync", "sass:watch"]);

@@ -4,10 +4,22 @@
 
 module.exports = function() {
 	
-	var assets = 'app/assets/';
-	var config = {
+	var root 		= "./";
+	var app 		= root + "app/";
+	var bowerFiles 	= root + "bower_components/"
+	var assets 		= 'app/assets/';
+
+	var config 		= {
 		'rootSass'	: assets + 'styles/app.scss',
-		'allSass'	: assets + 'styles/**/*.scss'
+		'allSass'	: assets + 'styles/**/*.scss',
+		'allLib' 	: [
+						bowerFiles + "jquery/dist/jquery.min.js",
+						bowerFiles + "jquery/dist/bootstrap-sass/bootstrap.min.js"
+					  ],
+		"allApp"	: [
+						app + "jquery/dist/jquery.min.js"
+					  ],
+		"temp"		: app + "tmp"
 	};
 
 	return config;
