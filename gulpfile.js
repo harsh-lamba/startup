@@ -12,7 +12,8 @@ var $ = require("gulp-load-plugins")({
 		"gulp-util"		: "logger",
 		"gulp-concat"	: "concate",
 		"gulp-rename"	: "rename",
-		"gulp-uglify"	: "minify"
+		"gulp-uglify"	: "minify",
+		"gulp-eslint"	: "eslint"
 	}
 });
 
@@ -51,5 +52,43 @@ gulp.task("js:lib", function(){
 			.pipe(gulp.dest(config.temp));
 });
 
+//Concatenate all application specific js
+gulp.task("js:app", function(){
+	$.logger.log("All angular files");
+	return gulp
+			.src(config.allApp)
+			.pipe($.concate("app.js"))
+			.pipe(gulp.dest(config.temp));
+});
+
+//javascript files linting using eslint plugin
+gulp.task("js:lint", function(){
+	$.logger.log("Angular files are being linted");
+	return gulp
+			.src(config.allApp)
+			.pipe($.eslint(
+				{
+					rules : {
+						"strict" : 1,
+						"camelcase" : 2,
+						"comma-dangle" : 0
+					},
+					globals : [
+						"jQuery",
+						"$"
+					],
+					envs : [
+						"browser"
+					]
+				}
+			))
+			.pipe($.eslint.formatEach('compact', process.stderr))
+			.pipe($.eslint.results(function(results){
+				$.logger.log(results.length);
+				$.logger.log(results.warningCount);
+				$.logger.log(results.errorCount);
+			}))
+});
+
 //Build Task
-gulp.task("run", ["sass", "js:lib", "browser-sync", "sass:watch"]);
+gulp.task("run", ["sass", "js:lib", "js:app", "browser-sync", "sass:watch"]);
